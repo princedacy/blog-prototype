@@ -1,7 +1,7 @@
 "use client";
 import { QueryClient, QueryClientProvider } from "react-query";
 import "./globals.css";
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/shared/Navbar";
 
 const queryClient = new QueryClient();
 

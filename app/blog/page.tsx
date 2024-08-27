@@ -68,11 +68,7 @@ const Blogs = () => {
                 {moment(blog.attributes.publishedAt).format("LL")}
               </span>
               <p className="text-sm leading-normal text-gray-700">
-                {blog.attributes.description
-                  .map((desc) =>
-                    desc.children.map((child) => child.text).join(" ")
-                  )
-                  .join(" ")}
+                {blog.attributes.description.slice(0, 100)}...
               </p>
               <span className="text-sm rounded-full border w-fit px-2 py-1">
                 {blog.attributes.category}
