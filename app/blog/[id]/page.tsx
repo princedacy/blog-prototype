@@ -6,6 +6,8 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import moment from "moment";
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
+import Section from "@/components/shared/Section";
 
 interface BlogAttributes {
   createdAt: string;
@@ -43,7 +45,7 @@ const BlogDetail = () => {
   if (!blog) return <div>Blog not found</div>;
 
   return (
-    <section className="w-full lg:w-2/3 mx-auto flex flex-col gap-8">
+    <Section className="w-full relative lg:w-2/3 mx-auto flex flex-col gap-8 top-40">
       <header className="py-12">
         <h1 className="text-3xl">{blog.attributes.title}</h1>
       </header>
@@ -63,11 +65,8 @@ const BlogDetail = () => {
           {blog.attributes.category}
         </span>
       </div>
-      <p className="text-md leading-normal text-gray-700">
-        {blog.attributes.description
-          .map((desc) => desc.children.map((child) => child.text).join(" "))
-          .join(" ")}
-      </p>
+
+      <ReactMarkdown>{blog.attributes.description}</ReactMarkdown>
 
       {/* Featured blogs section */}
       <div className="mt-12">
@@ -89,10 +88,7 @@ const BlogDetail = () => {
                     {featuredBlog.attributes.title}
                   </h3>
                   <p className="text-sm text-gray-600">
-                    {featuredBlog.attributes.description[0].children[0].text.slice(
-                      0,
-                      100
-                    )}
+                    {featuredBlog.attributes.description.slice(0, 100)}
                     ...
                   </p>
                 </div>
@@ -101,7 +97,7 @@ const BlogDetail = () => {
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 };
 
